@@ -1,0 +1,1 @@
+# myLibrary_Android_nativ
