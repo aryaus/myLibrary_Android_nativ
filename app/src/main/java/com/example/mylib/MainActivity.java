@@ -1,7 +1,9 @@
 package com.example.mylib;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -75,8 +77,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnAbout.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(R.string.app_name);
+                builder.setMessage("Designed and Developed for learn purposes by Arya Gh.\n" +
+                        "Check my website for more awsome applications: ");
+                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setPositiveButton("Visit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // TODO: show the website
+                        Intent intent = new Intent(MainActivity.this, WebsiteActivity.class);
+                        intent.putExtra("url", "https://google.com");
+                        startActivity(intent);
+                    }
+                });
+                builder.create().show();
+            }
+        });
+
+
 // we call this class and initial out instance to avoid the null exception error.
-        Utils.getInstance();
+        Utils.getInstance(this);
     }
 
     private void initViews() {
